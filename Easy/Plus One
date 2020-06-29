@@ -1,0 +1,17 @@
+https://leetcode.com/problems/plus-one/
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        res = []
+        carry = 1
+        for i in range (len(digits) - 1, -1, -1):
+            carry = carry + digits[i]
+            res.append(carry % 10 )
+            carry = carry // 10
+            
+        if carry > 0:
+            res.append(carry)
+        res.reverse()
+        
+        return res
+       
