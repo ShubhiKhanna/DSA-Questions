@@ -1,0 +1,36 @@
+https://leetcode.com/problems/find-all-anagrams-in-a-string/submissions/
+
+from collections import Counter
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+            n = len(p)
+            out = []
+        
+            dictS = {}
+            dictP = Counter(p)
+        
+            for i in range(len(s)-n+1):
+                temp = s[i : i + n]
+            
+                left = s[i]
+                right = s[i + n - 1]
+            
+                if not dictS:
+                    dictS = Counter(temp)
+                        
+                else:
+                    if right not in dictS:
+                        dictS[right] = 1
+                    else:
+                        dictS[right] += 1
+            
+                if dictP == dictS:
+                    out.append(i) 
+                
+                if dictS[left] == 1:
+                    dictS.pop(left)
+                else:
+                    dictS[left] -= 1
+                
+            return out
+        
