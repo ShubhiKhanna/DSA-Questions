@@ -1,0 +1,28 @@
+https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/
+
+def recoverFromPreorder(self, S: str) -> TreeNode:
+        depth = 0
+        dd = collections.defaultdict(TreeNode)
+        head = TreeNode(-1)
+        dd[-1] = head
+        cur_num = ''        
+        for i, c in enumerate(S):
+            if c != '-':
+                if (i < len(S)-1 and S[i+1] != '-'): 
+                    cur_num += c
+                else:
+                    prev = dd[depth-1]
+                    cur = TreeNode(cur_num + c)
+                    dd[depth] = cur
+                    
+                    if prev.left:
+                        prev.right = cur
+                    else:
+                        prev.left = cur
+
+                    depth = 0
+                    cur_num = ''
+            else:
+                depth += 1
+            
+        return head.left
