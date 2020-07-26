@@ -1,0 +1,14 @@
+https://leetcode.com/problems/beautiful-array/
+
+Sort by reversed binary
+
+    def beautifulArray(self, N):
+        return sorted(range(1, N + 1), key=lambda x: bin(x)[:1:-1])
+Naive recursion
+
+    def beautifulArray(self, N):
+        return [i * 2 for i in self.beautifulArray(N / 2)] + [i * 2 - 1 for i in self.beautifulArray((N + 1) / 2)] if N > 1 else [1]
+Binary Reverse
+
+    def beautifulArray(self, N):
+        return [i for i in [int('{:010b}'.format(i)[::-1], 2) for i in range(1, 1 << 10)] if i <= N]
