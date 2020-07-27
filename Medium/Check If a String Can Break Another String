@@ -1,0 +1,18 @@
+https://leetcode.com/problems/check-if-a-string-can-break-another-string/
+
+class Solution:
+    def checkIfCanBreak(self, s1: str, s2: str) -> bool:
+        s1_list , s2_list = list(s1) , list(s2)
+        s1_list.sort()
+        s2_list.sort()
+        flag_s1 = True
+        flag_s2 = True
+        for i , j in zip(s1_list , s2_list):
+            if ord(i) > ord(j):
+                flag_s1 = False
+        for i , j in zip(s1_list , s2_list):
+            if ord(i) < ord(j):
+                flag_s2 = False
+        if flag_s1 or flag_s2:
+            return True
+        return False
