@@ -1,0 +1,17 @@
+https://leetcode.com/problems/largest-values-from-labels/
+
+def largestValsFromLabels(self, values, labels, num_wanted, use_limit):
+  
+        ct, res = 0, 0
+        label_counts = collections.defaultdict(int)
+
+        for value, label in sorted(zip(values, labels), reverse=True):
+            
+            if ct == num_wanted: break
+            if label_counts[label] == use_limit: continue
+            
+            ct += 1
+            res += value
+            label_counts[label] += 1
+
+        return res
