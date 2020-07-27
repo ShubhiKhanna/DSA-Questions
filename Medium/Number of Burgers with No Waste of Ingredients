@@ -1,0 +1,10 @@
+https://leetcode.com/problems/number-of-burgers-with-no-waste-of-ingredients/
+
+class Solution(object):
+    def numOfBurgers(self, t, c):
+        small = ((4*c)-t)/2
+        jumbo = c-small
+        if small.is_integer() and small >= 0 and jumbo >= 0:
+            return [int(jumbo), int(small)]
+        else:
+            return []
